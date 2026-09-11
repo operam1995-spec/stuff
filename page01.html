@@ -1,0 +1,912 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>All &#8212; New Docs</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=a95f357e85573c9b56d5" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=e8d7399f" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=a95f357e85573c9b56d5"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
+
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'page01';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="_static/custom.js?v=bc3253c9"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Feedback" href="Reach.html" />
+    <link rel="prev" title="Index" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Website</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    All
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Reach.html">
+    Feedback
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    All
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Reach.html">
+    Feedback
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">All</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="all">
+<h1>All<a class="headerlink" href="#all" title="Link to this heading">#</a></h1>
+<section id="finding-combinations-according-to-the-target-parameters">
+<h2>Finding Combinations according to the Target Parameters<a class="headerlink" href="#finding-combinations-according-to-the-target-parameters" title="Link to this heading">#</a></h2>
+<p>Finding the correct combination of elements <strong>A</strong> to <strong>E</strong> based on dataset parameters to achieve the target values for <strong>bl</strong> and <strong>con</strong>.</p>
+<p><strong>Dataset Parameter Ranges</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Range</p></th>
+<th class="head"><p>Lower Bound</p></th>
+<th class="head"><p>Upper Bound</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>[0.48, 0.50]</p></td>
+<td><p>0.48</p></td>
+<td><p>0.50</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>[0.80, 0.90]</p></td>
+<td><p>0.80</p></td>
+<td><p>0.90</p></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td><p>[0.52, 0.88]</p></td>
+<td><p>0.52</p></td>
+<td><p>0.88</p></td>
+</tr>
+<tr class="row-odd"><td><p>D</p></td>
+<td><p>[0.17, 0.25]</p></td>
+<td><p>0.17</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-even"><td><p>E</p></td>
+<td><p>[0.66, 0.70]</p></td>
+<td><p>0.66</p></td>
+<td><p>0.70</p></td>
+</tr>
+<tr class="row-odd"><td><p>con</p></td>
+<td><p>[0.40, 0.47]</p></td>
+<td><p>0.40</p></td>
+<td><p>0.47</p></td>
+</tr>
+<tr class="row-even"><td><p>bl</p></td>
+<td><p>[1700, 1900]</p></td>
+<td><p>1700</p></td>
+<td><p>1900</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Total data points: <strong>100</strong></p></li>
+</ul>
+<section id="scenario-1-single-target-parameter-con-0-42">
+<h3>Scenario 1: Single Target Parameter (con = 0.42)<a class="headerlink" href="#scenario-1-single-target-parameter-con-0-42" title="Link to this heading">#</a></h3>
+<p>First, we consider only one target parameter: <strong>con = 0.42</strong>.</p>
+<iframe src="_static/plot1_1d.html" width="100%" height="450px" frameborder="0"></iframe>
+   <p class="download-btn-wrap">
+  <a class="download-btn" href="_static/plot1_1d.html" target="_blank">
+    <span class="download-icon">🔽</span> Download Plot
+  </a>
+</p><div class="pst-scrollable-table-container"><table class="table" id="id2">
+<caption><span class="caption-text">Results for Target con = 0.42</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 14.6%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>C</p></th>
+<th class="head"><p>D</p></th>
+<th class="head"><p>E</p></th>
+<th class="head"><p>con</p></th>
+<th class="head"><p>bl</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>27</p></td>
+<td><p>0.490</p></td>
+<td><p>0.886</p></td>
+<td><p>0.662</p></td>
+<td><p>0.219</p></td>
+<td><p>0.696</p></td>
+<td><p>0.419</p></td>
+<td><p>1849.494</p></td>
+</tr>
+<tr class="row-odd"><td><p>79</p></td>
+<td><p>0.482</p></td>
+<td><p>0.814</p></td>
+<td><p>0.806</p></td>
+<td><p>0.193</p></td>
+<td><p>0.681</p></td>
+<td><p>0.418</p></td>
+<td><p>1873.101</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>0.495</p></td>
+<td><p>0.831</p></td>
+<td><p>0.578</p></td>
+<td><p>0.213</p></td>
+<td><p>0.680</p></td>
+<td><p>0.422</p></td>
+<td><p>1735.402</p></td>
+</tr>
+<tr class="row-odd"><td><p>37</p></td>
+<td><p>0.482</p></td>
+<td><p>0.870</p></td>
+<td><p>0.529</p></td>
+<td><p>0.226</p></td>
+<td><p>0.693</p></td>
+<td><p>0.417</p></td>
+<td><p>1748.494</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="scenario-2-dual-target-parameters-con-0-42-bl-1800">
+<h3>Scenario 2: Dual Target Parameters (con = 0.42, bl = 1800)<a class="headerlink" href="#scenario-2-dual-target-parameters-con-0-42-bl-1800" title="Link to this heading">#</a></h3>
+<p>Next, we find combinations to meet both target parameters:</p>
+<ul class="simple">
+<li><p><strong>con</strong>: 0.42</p></li>
+<li><p><strong>bl</strong>: 1800</p></li>
+</ul>
+<iframe src="_static/plot2_2d.html" width="100%" height="450px" frameborder="0"></iframe>
+<p class="download-btn-wrap">
+  <a class="download-btn" href="_static/plot2_2d.html" target="_blank">
+    <span class="download-icon">🔽</span> Download Plot
+  </a>
+</p><div class="pst-scrollable-table-container"><table class="table" id="id3">
+<caption><span class="caption-text">Results for Target con = 0.42 and bl = 1800</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 12.2%" />
+<col style="width: 14.6%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>C</p></th>
+<th class="head"><p>D</p></th>
+<th class="head"><p>E</p></th>
+<th class="head"><p>con</p></th>
+<th class="head"><p>bl</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>85</p></td>
+<td><p>0.487</p></td>
+<td><p>0.866</p></td>
+<td><p>0.533</p></td>
+<td><p>0.234</p></td>
+<td><p>0.696</p></td>
+<td><p>0.417</p></td>
+<td><p>1811.353</p></td>
+</tr>
+<tr class="row-odd"><td><p>92</p></td>
+<td><p>0.495</p></td>
+<td><p>0.890</p></td>
+<td><p>0.816</p></td>
+<td><p>0.200</p></td>
+<td><p>0.671</p></td>
+<td><p>0.413</p></td>
+<td><p>1801.522</p></td>
+</tr>
+<tr class="row-even"><td><p>26</p></td>
+<td><p>0.484</p></td>
+<td><p>0.882</p></td>
+<td><p>0.870</p></td>
+<td><p>0.214</p></td>
+<td><p>0.678</p></td>
+<td><p>0.429</p></td>
+<td><p>1792.507</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>0.483</p></td>
+<td><p>0.825</p></td>
+<td><p>0.523</p></td>
+<td><p>0.248</p></td>
+<td><p>0.696</p></td>
+<td><p>0.411</p></td>
+<td><p>1792.156</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://operam1995-spec.github.io/stuff/_static/comp.pdf" width="100%" height="200px" style="border:none;"></iframe></section>
+</section>
+<section id="in-biochemistry">
+<h2>In Biochemistry<a class="headerlink" href="#in-biochemistry" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>In biochemistry, particular reagent kits follow certain mathematical equations.</p></li>
+<li><p>To use this kit, we need to calibrate it using the given controls. After calibration, a curve is generated, and tests may then be performed, with test results determined according to this curve.</p></li>
+<li><p>Here you may see 5 data points that represent the controls. One should already know the control values.</p>
+<blockquote>
+<div><p>While determining each control value, you may use the above
+optimization method to determine the correct or approximate control
+values.</p>
+</div></blockquote>
+</li>
+</ul>
+<iframe src="_static/plot_bioc.html" width="100%" height="500px" frameborder="0"></iframe>
+<p class="download-btn-wrap">
+  <a class="download-btn" href="_static/plot_bioc.html" target="_blank">
+    <span class="download-icon">🔽</span> Download Plot
+  </a>
+</p></section>
+<section id="measurement-of-height-using-a-sensor-module">
+<h2>Measurement of height using a sensor module<a class="headerlink" href="#measurement-of-height-using-a-sensor-module" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>When measuring distance using a sensor, the output signal is relatively small and its range differs from the MCU’s ADC requirements. Therefore, an amplifier must be placed between them to adjust the signal range before feeding it into the MCU.</p></li>
+<li><p>Once you receive the numerical sensor output from the MCU, you can perform mathematical operations on the data to generate graphs for acceleration, velocity, and distance.</p></li>
+</ul>
+<iframe src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://operam1995-spec.github.io/stuff/_static/me.pdf" width="100%" height="200px" style="border:none;"></iframe></section>
+<section id="ads-keysight-datadisplay-solution">
+<h2>ADS Keysight (DataDisplay Solution)<a class="headerlink" href="#ads-keysight-datadisplay-solution" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>In Keysight ADS, the <kbd class="kbd docutils literal notranslate">DataDisplay</kbd> window becomes available after running a simulation. To perform mathematical operations on your data, Keysight provides its own <code class="docutils literal notranslate"><span class="pre">Application</span> <span class="pre">Extension</span> <span class="pre">Language</span> <span class="pre">(AEL)</span></code>.</p></li>
+<li><p>However, when working with multiple graphs, writing these equations directly in DataDisplay creates clutter and quickly becomes difficult to manage.</p></li>
+<li><p>Keysight also supports Python, integrating with VS Code and an embedded Python console for data processing.</p></li>
+<li><p>Unfortunately, there are very few examples available online, and public documentation for <code class="docutils literal notranslate"><span class="pre">AEL</span></code> is nearly non-existent—making debugging and finding the right functions a tedious, time-consuming task for any self lerner.</p></li>
+<li><p>For power electronics simulations where a stop time of a few milliseconds combined with a tiny time step generates millions of data rows, using Python’s <code class="docutils literal notranslate"><span class="pre">polars</span></code> package allows you to query and analyze this large dataset quickly and efficiently.</p></li>
+</ul>
+<section id="plot">
+<h3>Plot<a class="headerlink" href="#plot" title="Link to this heading">#</a></h3>
+<iframe src="_static/mos.html" width="100%" height="800px" style="border:none;"></iframe>
+<p class="download-btn-wrap">
+  <a class="download-btn" href="_static/mos.html" target="_blank">
+    <span class="download-icon">🔽</span> Download Plot
+  </a>
+</p></section>
+</section>
+</section>
+<section id="statistical-process-control-x-bar-r-and-s-charts">
+<h1>Statistical Process Control: X-bar, R, and S Charts<a class="headerlink" href="#statistical-process-control-x-bar-r-and-s-charts" title="Link to this heading">#</a></h1>
+<p>This document outlines the formulas and control limits for standard Shewhart control charts: the Mean (<span class="math notranslate nohighlight">\(\bar{X}\)</span>) chart, Range (<span class="math notranslate nohighlight">\(R\)</span>) chart, and Standard Deviation (<span class="math notranslate nohighlight">\(S\)</span>) chart.</p>
+<section id="subgroup-metrics-definitions">
+<h2>1. Subgroup Metrics &amp; Definitions<a class="headerlink" href="#subgroup-metrics-definitions" title="Link to this heading">#</a></h2>
+<p>For a process monitored across <span class="math notranslate nohighlight">\(k\)</span> subgroups, where each subgroup contains <span class="math notranslate nohighlight">\(n\)</span> observations:</p>
+<ul class="simple">
+<li><p><strong>Subgroup Sample Size:</strong> <span class="math notranslate nohighlight">\(n\)</span></p></li>
+<li><p><strong>Subgroup Count:</strong> <span class="math notranslate nohighlight">\(k\)</span></p></li>
+</ul>
+</section>
+<section id="x-bar-bar-x-chart">
+<h2>2. X-bar (<span class="math notranslate nohighlight">\(\bar{X}\)</span>) Chart<a class="headerlink" href="#x-bar-bar-x-chart" title="Link to this heading">#</a></h2>
+<p>Monitors the central tendency of the process over time.</p>
+<section id="subgroup-mean">
+<h3>Subgroup Mean<a class="headerlink" href="#subgroup-mean" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\bar{X}_j = \frac{\sum_{i=1}^{n} X_{ij}}{n}\]</div>
+</section>
+<section id="grand-mean-center-line">
+<h3>Grand Mean (Center Line)<a class="headerlink" href="#grand-mean-center-line" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\bar{\bar{X}} = \frac{\sum_{j=1}^{k} \bar{X}_j}{k}\]</div>
+</section>
+<section id="control-limits-using-range-bar-r">
+<h3>Control Limits Using Range (<span class="math notranslate nohighlight">\(\bar{R}\)</span>)<a class="headerlink" href="#control-limits-using-range-bar-r" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}UCL_{\bar{X}} = \bar{\bar{X}} + A_2 \bar{R}\\CL_{\bar{X}} = \bar{\bar{X}}\\LCL_{\bar{X}} = \bar{\bar{X}} - A_2 \bar{R}\end{aligned}\end{align} \]</div>
+</section>
+<section id="control-limits-using-standard-deviation-bar-s">
+<h3>Control Limits Using Standard Deviation (<span class="math notranslate nohighlight">\(\bar{S}\)</span>)<a class="headerlink" href="#control-limits-using-standard-deviation-bar-s" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}UCL_{\bar{X}} = \bar{\bar{X}} + A_3 \bar{S}\\CL_{\bar{X}} = \bar{\bar{X}}\\LCL_{\bar{X}} = \bar{\bar{X}} - A_3 \bar{S}\end{aligned}\end{align} \]</div>
+<iframe src="_static/xbar_chart.html" width="100%" height="400px" style="border:none;"></iframe>
+<p class="download-btn-wrap">
+  <a class="download-btn" href="_static/xbar_chart.html" target="_blank">
+    <span class="download-icon">🔽</span> Download Plot
+  </a>
+</p></section>
+</section>
+<section id="range-r-chart">
+<h2>3. Range (R) Chart<a class="headerlink" href="#range-r-chart" title="Link to this heading">#</a></h2>
+<p>Monitors within-subgroup variation for small sample sizes (typically <span class="math notranslate nohighlight">\(n \le 8\)</span> or <span class="math notranslate nohighlight">\(10\)</span>).</p>
+<section id="subgroup-range">
+<h3>Subgroup Range<a class="headerlink" href="#subgroup-range" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[R_j = X_{\max, j} - X_{\min, j}\]</div>
+</section>
+<section id="average-range-center-line">
+<h3>Average Range (Center Line)<a class="headerlink" href="#average-range-center-line" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\bar{R} = \frac{\sum_{j=1}^{k} R_j}{k}\]</div>
+</section>
+<section id="control-limits">
+<h3>Control Limits<a class="headerlink" href="#control-limits" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}UCL_R = D_4 \bar{R}\\CL_R = \bar{R}\\LCL_R = D_3 \bar{R}\end{aligned}\end{align} \]</div>
+<iframe src="_static/r_chart.html" width="100%" height="400px" style="border:none;"></iframe>
+<p class="download-btn-wrap">
+  <a class="download-btn" href="_static/r_chart.html" target="_blank">
+    <span class="download-icon">🔽</span> Download Plot
+  </a>
+</p></section>
+</section>
+<section id="standard-deviation-s-chart">
+<h2>4. Standard Deviation (S) Chart<a class="headerlink" href="#standard-deviation-s-chart" title="Link to this heading">#</a></h2>
+<p>Monitors process variation for moderate-to-large sample sizes (<span class="math notranslate nohighlight">\(n &gt; 8\)</span> or <span class="math notranslate nohighlight">\(10\)</span>) or variable subgroup sizes.</p>
+<section id="subgroup-standard-deviation">
+<h3>Subgroup Standard Deviation<a class="headerlink" href="#subgroup-standard-deviation" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[S_j = \sqrt{\frac{\sum_{i=1}^{n} (X_{ij} - \bar{X}_j)^2}{n - 1}}\]</div>
+</section>
+<section id="average-standard-deviation-center-line">
+<h3>Average Standard Deviation (Center Line)<a class="headerlink" href="#average-standard-deviation-center-line" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\bar{S} = \frac{\sum_{j=1}^{k} S_j}{k}\]</div>
+</section>
+<section id="id1">
+<h3>Control Limits<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}UCL_S = B_4 \bar{S}\\CL_S = \bar{S}\\LCL_S = B_3 \bar{S}\end{aligned}\end{align} \]</div>
+<iframe src="_static/s_chart.html" width="100%" height="400px" style="border:none;"></iframe>
+<p class="download-btn-wrap">
+  <a class="download-btn" href="_static/s_chart.html" target="_blank">
+    <span class="download-icon">🔽</span> Download Plot
+  </a>
+</p></section>
+</section>
+<section id="within-subgroup-sigma-estimates">
+<h2>5. Within-Subgroup Sigma Estimates<a class="headerlink" href="#within-subgroup-sigma-estimates" title="Link to this heading">#</a></h2>
+<p>To estimate the short-term process standard deviation (<span class="math notranslate nohighlight">\(\hat{\sigma}\)</span>) for capability analysis:</p>
+<ul>
+<li><p><strong>From Range:</strong></p>
+<div class="math notranslate nohighlight">
+\[\hat{\sigma}_R = \frac{\bar{R}}{d_2}\]</div>
+</li>
+<li><p><strong>From Standard Deviation:</strong></p>
+<div class="math notranslate nohighlight">
+\[\hat{\sigma}_S = \frac{\bar{S}}{c_4}\]</div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The constants <span class="math notranslate nohighlight">\(A_2, A_3, D_3, D_4, B_3, B_4, d_2,\)</span> and <span class="math notranslate nohighlight">\(c_4\)</span> are anti-bias control chart factors based on the subgroup sample size <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</div>
+</section>
+<section id="process-parameters-summary">
+<h2>6. Process Parameters &amp; Summary<a class="headerlink" href="#process-parameters-summary" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric / Parameter</p></th>
+<th class="head"><p>Symbol / Formula</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Subgroup Size</p></td>
+<td><p>n</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Subgroup Count</p></td>
+<td><p>k</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-even"><td><p>Grand Mean</p></td>
+<td><p>X-double-bar</p></td>
+<td><p>20.0132</p></td>
+</tr>
+<tr class="row-odd"><td><p>Upper Specification Limit</p></td>
+<td><p>USL</p></td>
+<td><p>20.3000</p></td>
+</tr>
+<tr class="row-even"><td><p>Lower Specification Limit</p></td>
+<td><p>LSL</p></td>
+<td><p>19.7000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Est. Within Standard Deviation</p></td>
+<td><p>sigma_R = R-bar/d2</p></td>
+<td><p>0.1444</p></td>
+</tr>
+<tr class="row-even"><td><p>Est. Within Standard Deviation</p></td>
+<td><p>sigma_S = S-bar/c4</p></td>
+<td><p>0.1409</p></td>
+</tr>
+<tr class="row-odd"><td><p>Overall Standard Deviation</p></td>
+<td><p>sigma_overall = s</p></td>
+<td><p>0.1393</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="capability-performance-indices">
+<h2>7. Capability &amp; Performance Indices<a class="headerlink" href="#capability-performance-indices" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Index</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Interpretation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="4"><p>Short-Term (Within)</p></td>
+<td><p>Cp</p></td>
+<td><p>0.692</p></td>
+<td><p>Process spread vs spec range</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cpu</p></td>
+<td><p>0.662</p></td>
+<td><p>Upper capability relative to USL</p></td>
+</tr>
+<tr class="row-even"><td><p>Cpl</p></td>
+<td><p>0.723</p></td>
+<td><p>Lower capability relative to LSL</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cpk</p></td>
+<td><p>0.662</p></td>
+<td><p>Actual capability min(Cpu, Cpl)</p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>Long-Term (Overall)</p></td>
+<td><p>Pp</p></td>
+<td><p>0.718</p></td>
+<td><p>Overall performance potential</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ppk</p></td>
+<td><p>0.686</p></td>
+<td><p>Actual overall performance</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Index</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Reach.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Feedback</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">All</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-combinations-according-to-the-target-parameters">Finding Combinations according to the Target Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-1-single-target-parameter-con-0-42">Scenario 1: Single Target Parameter (con = 0.42)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-2-dual-target-parameters-con-0-42-bl-1800">Scenario 2: Dual Target Parameters (con = 0.42, bl = 1800)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-biochemistry">In Biochemistry</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-of-height-using-a-sensor-module">Measurement of height using a sensor module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ads-keysight-datadisplay-solution">ADS Keysight (DataDisplay Solution)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot">Plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-process-control-x-bar-r-and-s-charts">Statistical Process Control: X-bar, R, and S Charts</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subgroup-metrics-definitions">1. Subgroup Metrics &amp; Definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x-bar-bar-x-chart">2. X-bar (<span class="math notranslate nohighlight">\(\bar{X}\)</span>) Chart</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subgroup-mean">Subgroup Mean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grand-mean-center-line">Grand Mean (Center Line)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-limits-using-range-bar-r">Control Limits Using Range (<span class="math notranslate nohighlight">\(\bar{R}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-limits-using-standard-deviation-bar-s">Control Limits Using Standard Deviation (<span class="math notranslate nohighlight">\(\bar{S}\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#range-r-chart">3. Range (R) Chart</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subgroup-range">Subgroup Range</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-range-center-line">Average Range (Center Line)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-limits">Control Limits</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-deviation-s-chart">4. Standard Deviation (S) Chart</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subgroup-standard-deviation">Subgroup Standard Deviation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-standard-deviation-center-line">Average Standard Deviation (Center Line)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Control Limits</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#within-subgroup-sigma-estimates">5. Within-Subgroup Sigma Estimates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-parameters-summary">6. Process Parameters &amp; Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#capability-performance-indices">7. Capability &amp; Performance Indices</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><p class="copyright">
+  🫸, <a href="https://sites.google.com/view/index0110/" target="_blank" rel="noopener noreferrer">Google Site</a>.
+</p></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>
