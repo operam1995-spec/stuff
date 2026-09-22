@@ -1,0 +1,481 @@
+/* =========================================================
+   Nova Sphinx Theme
+   A clean, modern documentation theme with light/dark modes.
+   ========================================================= */
+
+:root {
+  --nova-accent: #5b6cff;
+  --nova-accent-hover: #4655e0;
+
+  --nova-bg: #ffffff;
+  --nova-bg-alt: #f6f7f9;
+  --nova-bg-inset: #f0f1f5;
+  --nova-border: #e3e5ea;
+  --nova-text: #1c1e26;
+  --nova-text-muted: #5b5f6d;
+  --nova-text-faint: #8a8d99;
+
+  --nova-code-bg: #f4f5f8;
+  --nova-code-text: #d6336c;
+  --nova-link: var(--nova-accent);
+  --nova-link-hover: var(--nova-accent-hover);
+
+  --nova-shadow: 0 1px 2px rgba(20, 21, 26, 0.04), 0 4px 12px rgba(20, 21, 26, 0.06);
+
+  --nova-topbar-height: 60px;
+  --nova-sidebar-width: 280px;
+  --nova-toc-width: 220px;
+  --nova-content-max-width: 780px;
+
+  --nova-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  --nova-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  --nova-bg: #14151a;
+  --nova-bg-alt: #1b1c23;
+  --nova-bg-inset: #21222b;
+  --nova-border: #2c2e38;
+  --nova-text: #e7e8ec;
+  --nova-text-muted: #a4a7b5;
+  --nova-text-faint: #71747f;
+
+  --nova-code-bg: #1e1f28;
+  --nova-code-text: #ff8fb0;
+
+  --nova-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.35);
+
+  color-scheme: dark;
+}
+
+/* ---------- Reset-ish base ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--nova-bg);
+  color: var(--nova-text);
+  font-family: var(--nova-font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+img { max-width: 100%; }
+
+a {
+  color: var(--nova-link);
+  text-decoration: none;
+}
+a:hover { color: var(--nova-link-hover); text-decoration: underline; }
+
+.nova-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--nova-accent);
+  color: #fff;
+  padding: 0.6em 1em;
+  z-index: 1000;
+  border-radius: 0 0 6px 0;
+}
+.nova-skip-link:focus { left: 0; }
+
+/* ---------- Layout shell ---------- */
+.nova-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.nova-body {
+  display: flex;
+  flex: 1;
+  padding-top: var(--nova-topbar-height);
+}
+
+/* ---------- Topbar ---------- */
+.nova-topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nova-topbar-height);
+  background: var(--nova-bg);
+  border-bottom: 1px solid var(--nova-border);
+  z-index: 100;
+}
+
+.nova-topbar-inner {
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nova-nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 34px;
+  height: 34px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.nova-nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--nova-text);
+  margin: 0 auto;
+}
+.nova-nav-toggle:hover { background: var(--nova-bg-alt); }
+
+.nova-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--nova-text) !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+.nova-logo { height: 26px; width: auto; }
+.nova-logo-dark { display: none; }
+html[data-theme="dark"] .nova-logo-light { display: none; }
+html[data-theme="dark"] .nova-logo-dark { display: inline-block; }
+
+.nova-topbar-spacer { flex: 1; }
+
+.nova-search-form input[type="text"] {
+  width: 240px;
+  max-width: 40vw;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--nova-border);
+  background: var(--nova-bg-alt);
+  color: var(--nova-text);
+  font-size: 0.9rem;
+  outline: none;
+}
+.nova-search-form input[type="text"]:focus {
+  border-color: var(--nova-accent);
+  background: var(--nova-bg);
+}
+
+.nova-icon-link, .nova-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  color: var(--nova-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.nova-icon-link:hover, .nova-theme-toggle:hover {
+  background: var(--nova-bg-alt);
+  color: var(--nova-text);
+  text-decoration: none;
+}
+
+.nova-icon-sun, .nova-icon-moon { display: none; }
+html[data-theme="light"] .nova-icon-sun { display: block; }
+html[data-theme="dark"] .nova-icon-moon { display: block; }
+
+/* ---------- Sidebar ---------- */
+.nova-sidebar {
+  position: fixed;
+  top: var(--nova-topbar-height);
+  bottom: 0;
+  left: 0;
+  width: var(--nova-sidebar-width);
+  overflow-y: auto;
+  border-right: 1px solid var(--nova-border);
+  background: var(--nova-bg);
+  z-index: 90;
+  transition: transform 0.2s ease;
+}
+
+.nova-sidebar-inner { padding: 24px 18px 60px; }
+
+.nova-sidebar-title {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--nova-text) !important;
+  text-decoration: none !important;
+}
+
+.nova-sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+.nova-sidebar ul ul { padding-left: 14px; }
+
+.nova-sidebar li { margin: 2px 0; }
+
+.nova-sidebar a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: var(--nova-text-muted);
+  font-size: 0.92rem;
+  text-decoration: none !important;
+}
+.nova-sidebar a:hover { background: var(--nova-bg-alt); color: var(--nova-text); }
+.nova-sidebar li.current > a {
+  background: var(--nova-bg-inset);
+  color: var(--nova-accent);
+  font-weight: 600;
+}
+
+.nova-sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 80;
+}
+
+/* ---------- Main content ---------- */
+.nova-main {
+  flex: 1;
+  min-width: 0;
+  margin-left: var(--nova-sidebar-width);
+  display: flex;
+  flex-direction: column;
+}
+
+.nova-content-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 32px 20px;
+}
+
+.nova-article {
+  max-width: var(--nova-content-max-width);
+  width: 100%;
+  min-width: 0;
+}
+
+.nova-page-toc {
+  width: var(--nova-toc-width);
+  flex-shrink: 0;
+}
+.nova-page-toc-inner {
+  position: sticky;
+  top: calc(var(--nova-topbar-height) + 24px);
+  font-size: 0.85rem;
+}
+.nova-toc-heading {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--nova-text-faint);
+  margin: 0 0 8px;
+}
+.nova-page-toc ul { list-style: none; padding-left: 0; margin: 0; }
+.nova-page-toc ul ul { padding-left: 12px; }
+.nova-page-toc li { margin: 4px 0; }
+.nova-page-toc a {
+  color: var(--nova-text-muted);
+  display: block;
+  border-left: 2px solid transparent;
+  padding-left: 10px;
+}
+.nova-page-toc a:hover { color: var(--nova-text); text-decoration: none; }
+
+/* ---------- Typography inside article ---------- */
+.nova-article h1, .nova-article h2, .nova-article h3,
+.nova-article h4, .nova-article h5, .nova-article h6 {
+  font-weight: 700;
+  line-height: 1.3;
+  scroll-margin-top: calc(var(--nova-topbar-height) + 16px);
+}
+.nova-article h1 { font-size: 2.1rem; margin: 0 0 0.6em; }
+.nova-article h2 { font-size: 1.5rem; margin: 1.8em 0 0.6em; padding-top: 0.2em; border-top: 1px solid var(--nova-border); }
+.nova-article h2:first-child { border-top: none; margin-top: 0; }
+.nova-article h3 { font-size: 1.2rem; margin: 1.5em 0 0.5em; }
+.nova-article h4 { font-size: 1.05rem; margin: 1.3em 0 0.4em; }
+
+.nova-article p { margin: 0 0 1em; color: var(--nova-text); }
+
+.nova-article a.headerlink {
+  opacity: 0;
+  margin-left: 8px;
+  color: var(--nova-text-faint) !important;
+  text-decoration: none !important;
+  font-weight: 400;
+}
+.nova-article h1:hover a.headerlink,
+.nova-article h2:hover a.headerlink,
+.nova-article h3:hover a.headerlink,
+.nova-article h4:hover a.headerlink { opacity: 1; }
+
+.nova-article ul, .nova-article ol { padding-left: 1.4em; margin: 0 0 1em; }
+.nova-article li { margin: 0.3em 0; }
+
+.nova-article blockquote {
+  margin: 1.2em 0;
+  padding: 0.2em 1.2em;
+  border-left: 3px solid var(--nova-accent);
+  background: var(--nova-bg-alt);
+  color: var(--nova-text-muted);
+  border-radius: 0 8px 8px 0;
+}
+
+.nova-article table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.4em 0;
+  font-size: 0.92rem;
+}
+.nova-article th, .nova-article td {
+  border: 1px solid var(--nova-border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.nova-article th { background: var(--nova-bg-alt); font-weight: 600; }
+.nova-article tr:nth-child(even) td { background: var(--nova-bg-alt); }
+
+/* Code */
+.nova-article code, .nova-article tt {
+  font-family: var(--nova-font-mono);
+  font-size: 0.86em;
+  background: var(--nova-code-bg);
+  color: var(--nova-code-text);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+.nova-article pre {
+  background: var(--nova-code-bg);
+  border: 1px solid var(--nova-border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  overflow-x: auto;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  margin: 1.2em 0;
+}
+.nova-article pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+div.highlight { margin: 0; background: none !important; }
+div.highlight pre { margin: 0; }
+
+/* Admonitions */
+.nova-article .admonition {
+  margin: 1.4em 0;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--nova-border);
+  border-left-width: 4px;
+  background: var(--nova-bg-alt);
+}
+.nova-article .admonition-title {
+  font-weight: 700;
+  margin: 0 0 0.4em;
+  display: block;
+}
+.nova-article .admonition p:last-child { margin-bottom: 0; }
+
+.nova-article .admonition.note,
+.nova-article .admonition.seealso { border-left-color: var(--nova-accent); }
+.nova-article .admonition.warning,
+.nova-article .admonition.caution { border-left-color: #e0a300; }
+.nova-article .admonition.danger,
+.nova-article .admonition.error { border-left-color: #e0453f; }
+.nova-article .admonition.tip,
+.nova-article .admonition.hint { border-left-color: #2fb380; }
+
+/* Definition lists / API docs (autodoc) */
+dl.py, dl.class, dl.function, dl.method, dl.attribute {
+  margin: 1.4em 0;
+  padding: 12px 16px;
+  border: 1px solid var(--nova-border);
+  border-radius: 10px;
+  background: var(--nova-bg-alt);
+}
+dl.py > dt, dl.class > dt, dl.function > dt, dl.method > dt, dl.attribute > dt {
+  font-family: var(--nova-font-mono);
+  font-size: 0.88rem;
+  padding: 4px 0;
+  background: none;
+  border: none;
+  color: var(--nova-text);
+}
+.nova-article .property, .nova-article .pre { font-family: var(--nova-font-mono); }
+
+/* Horizontal rule */
+.nova-article hr { border: none; border-top: 1px solid var(--nova-border); margin: 2em 0; }
+
+/* Search results / genindex etc use basic theme markup; keep readable */
+.nova-article ul.search { list-style: none; padding-left: 0; }
+
+/* ---------- Footer ---------- */
+.nova-footer {
+  border-top: 1px solid var(--nova-border);
+  margin-top: 40px;
+}
+.nova-footer-inner {
+  max-width: var(--nova-content-max-width);
+  margin: 0 auto;
+  padding: 20px 32px 32px;
+  font-size: 0.85rem;
+  color: var(--nova-text-faint);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.nova-edit-link { font-weight: 600; }
+
+/* Prev/next (basic theme related links, if enabled) */
+.related { display: none; } /* we hide the default relbar; theme uses its own nav */
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .nova-page-toc { display: none; }
+}
+
+@media (max-width: 900px) {
+  .nova-nav-toggle { display: flex; }
+
+  .nova-sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--nova-shadow);
+  }
+  html[data-sidebar-open="true"] .nova-sidebar { transform: translateX(0); }
+  html[data-sidebar-open="true"] .nova-sidebar-backdrop { display: block; }
+
+  .nova-main { margin-left: 0; }
+
+  .nova-search-form input[type="text"] { width: 160px; }
+}
+
+@media (max-width: 600px) {
+  .nova-content-wrap { padding: 24px 16px 10px; }
+  .nova-article h1 { font-size: 1.7rem; }
+  .nova-brand-text { display: none; }
+}
