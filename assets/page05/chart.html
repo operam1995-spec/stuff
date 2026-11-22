@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Control Charts</title>
+  <script src="highcharts.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; overflow: hidden; }
+    body { font-family: Helvetica, Arial, sans-serif; display: flex; flex-direction: column; padding: 6px 8px; }
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid #ccc; flex: 0 0 auto; }
+    .tab { background: none; border: none; padding: 8px 18px; cursor: pointer; font-size: 15px;
+           color: #555; border-bottom: 3px solid transparent; }
+    .tab:hover { color: #000; }
+    .tab.active { color: #0072BD; border-bottom-color: #0072BD; font-weight: bold; }
+    .panel { display: none; width: 100%; margin-top: 6px; min-height: 0; }
+    .panel.active { display: block; flex: 1 1 auto; }
+  </style>
+</head>
+<body>
+  <div class="tabs" id="tabs"></div>
+  <div id="panels" style="display:contents"></div>
+
+  <script>
+    var CH = [{id:'xbar',name:'X-bar Chart',ytitle:'Sample Mean',values:[19.99183,19.99201,19.92176,19.99999,19.98419,19.97681,19.97686,20.04060,20.10740,20.01353,19.98813,20.01990,19.92801,19.93721,20.01376,20.02649,19.96224,20.00911,20.07643,19.99921],ucl:20.14732,cl:19.99827,lcl:19.84923},{id:'rchart',name:'R Chart',ytitle:'Sample Range',values:[0.42630,0.35200,0.26690,0.30450,0.29790,0.56970,0.43530,0.32680,0.44630,0.12130,0.28520,0.45210,0.36110,0.17180,0.36050,0.36310,0.23940,0.29000,0.65010,0.39390],ucl:0.68439,cl:0.35571,lcl:0.02703},{id:'schart',name:'S Chart',ytitle:'Sample Standard Deviation',values:[0.15626,0.13072,0.10480,0.11006,0.12186,0.20251,0.14469,0.14863,0.15459,0.04271,0.11219,0.15212,0.13568,0.06877,0.13035,0.13450,0.08686,0.10491,0.19857,0.14078],ucl:0.24293,cl:0.12908,lcl:0.01523}];
+    var N = 7, K = 20;
+
+    function axisStyle(title, withLine) {
+      var a = {
+        title: { text: title }, gridLineWidth: 1, gridLineColor: '#d9d9d9',
+        lineColor: '#262626', tickColor: '#262626', tickWidth: 1, tickLength: 6, tickPosition: 'inside',
+        minorTickInterval: 'auto', minorGridLineWidth: 1, minorGridLineColor: '#ececec',
+        minorGridLineDashStyle: 'Dot', minorTickWidth: 1, minorTickLength: 3,
+        minorTickPosition: 'inside', minorTickColor: '#262626',
+        labels: { style: { color: '#262626' } }
+      };
+      if (withLine) a.lineWidth = 1;
+      return a;
+    }
+
+    function limitLine(v, txt, color, dash) {
+      return { value: v, color: color, width: 1.5, dashStyle: dash, zIndex: 3,
+               label: { text: txt + ' = ' + v.toFixed(4), align: 'right', x: -6, y: -4,
+                        style: { color: color, fontSize: '12px' } } };
+    }
+
+    function makeChart(c) {
+      var pts = c.values.map(function (v, i) {
+        var o = { x: i + 1, y: v };
+        if (v > c.ucl || v < c.lcl) {
+          o.marker = { fillColor: '#D62728', lineColor: '#D62728', radius: 6 };
+        }
+        return o;
+      });
+      var lo = Math.min(c.lcl, Math.min.apply(null, c.values));
+      var hi = Math.max(c.ucl, Math.max.apply(null, c.values));
+      var pad = (hi - lo) * 0.08;
+
+      var ya = axisStyle(c.ytitle, true);
+      ya.min = lo - pad; ya.max = hi + pad;
+      ya.startOnTick = false; ya.endOnTick = false;
+      ya.plotLines = [
+        limitLine(c.ucl, 'UCL', '#D62728', 'Dash'),
+        limitLine(c.cl, 'CL', '#2CA02C', 'Solid'),
+        limitLine(c.lcl, 'LCL', '#D62728', 'Dash')
+      ];
+
+      var xa = axisStyle('Subgroup', false);
+      xa.min = 1; xa.max = K; xa.tickInterval = 1;
+
+      return Highcharts.chart(c.id, {
+        chart: { type: 'line', backgroundColor: '#ffffff', plotBackgroundColor: '#ffffff',
+                 plotBorderWidth: 1, plotBorderColor: '#262626',
+                 style: { fontFamily: 'Helvetica, Arial, sans-serif' } },
+        title: { text: c.name + ' (n = ' + N + ', k = ' + K + ')',
+                 style: { fontSize: '16px', fontWeight: 'bold' } },
+        credits: { enabled: false },
+        legend: { enabled: false },
+        xAxis: xa,
+        yAxis: ya,
+        tooltip: { headerFormat: '', pointFormat: 'Subgroup {point.x}<br>' + c.ytitle + ': {point.y:.4f}' },
+        series: [{
+          name: c.name, data: pts, color: '#0072BD', lineWidth: 1.5,
+          marker: { enabled: true, symbol: 'circle', radius: 4, fillColor: '#0072BD', lineColor: '#0072BD' },
+          states: { hover: { lineWidth: 1.5 } }
+        }]
+      });
+    }
+
+    if (typeof Highcharts === 'undefined') {
+      document.body.insertAdjacentHTML('afterbegin',
+        '<p style="color:red;font-size:18px">Highcharts library failed to load. ' +
+        'Download https://code.highcharts.com/highcharts.js, save it as highcharts.js ' +
+        'next to plot.html, then re-run the program.</p>');
+    } else {
+      var tabsEl = document.getElementById('tabs');
+      var panelsEl = document.getElementById('panels');
+      var charts = {};
+
+      CH.forEach(function (c) {
+        var btn = document.createElement('button');
+        btn.className = 'tab'; btn.textContent = c.name; btn.setAttribute('data-id', c.id);
+        tabsEl.appendChild(btn);
+        var panel = document.createElement('div');
+        panel.className = 'panel'; panel.id = c.id;
+        panelsEl.appendChild(panel);
+        btn.addEventListener('click', function () { showTab(c.id); });
+      });
+
+      function showTab(id) {
+        document.querySelectorAll('.tab').forEach(function (t) {
+          t.classList.toggle('active', t.getAttribute('data-id') === id);
+        });
+        document.querySelectorAll('.panel').forEach(function (p) {
+          p.classList.toggle('active', p.id === id);
+        });
+        if (!charts[id]) {
+          charts[id] = makeChart(CH.filter(function (c) { return c.id === id; })[0]);
+        } else {
+          charts[id].reflow();
+        }
+      }
+      window.addEventListener('resize', function () {
+        Object.keys(charts).forEach(function (k) { charts[k].reflow(); });
+      });
+      showTab(CH[0].id);
+    }
+  </script>
+</body>
+</html>
