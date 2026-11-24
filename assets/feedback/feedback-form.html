@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feedback</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef1f5;
+    --card: #ffffff;
+    --ink: #172033;
+    --muted: #5b6577;
+    --line: #d5dbe5;
+    --accent: #0f6b66;
+    --accent-hover: #0b5753;
+    --accent-soft: #e2f1ef;
+    --danger: #b42318;
+    --danger-soft: #fdeceb;
+    --ring: rgba(15, 107, 102, .28);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1520;
+      --card: #171f2d;
+      --ink: #e8ecf3;
+      --muted: #9aa5b8;
+      --line: #2c3749;
+      --accent: #3fb3aa;
+      --accent-hover: #5cc6be;
+      --accent-soft: #14312f;
+      --danger: #f4857b;
+      --danger-soft: #3a1c1a;
+      --ring: rgba(63, 179, 170, .35);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: transparent; }
+  body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px 16px;
+    background: transparent;
+    color: var(--ink);
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .card {
+    width: 100%;
+    max-width: 520px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 40px 36px 36px;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 12px 32px -12px rgba(16, 24, 40, .12);
+  }
+  h1 {
+    margin: 0 0 8px;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -.02em;
+  }
+  .lead { margin: 0 0 28px; color: var(--muted); }
+  .field { margin-bottom: 20px; }
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: .9rem;
+    font-weight: 600;
+  }
+  .hint { font-weight: 400; color: var(--muted); }
+  input, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  input::placeholder, textarea::placeholder { color: var(--muted); opacity: .7; }
+  textarea { min-height: 130px; resize: vertical; }
+  input:hover, textarea:hover { border-color: var(--muted); }
+  input:focus-visible, textarea:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--ring);
+  }
+  input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--danger); }
+  .error-text { margin: 6px 0 0; font-size: .85rem; color: var(--danger); min-height: 0; }
+  .error-text:empty { display: none; }
+
+  .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  button {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 20px;
+    font: inherit;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  @media (prefers-color-scheme: dark) { button { color: #08201e; } }
+  button:hover { background: var(--accent-hover); }
+  button:focus-visible { outline: none; box-shadow: 0 0 0 4px var(--ring); }
+  button[disabled] { opacity: .7; cursor: progress; }
+
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    display: none;
+    animation: spin .7s linear infinite;
+  }
+  button[disabled] .spinner { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .banner {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: .92rem;
+    background: var(--danger-soft);
+    color: var(--danger);
+  }
+  .banner[hidden] { display: none; }
+
+  .success { text-align: left; }
+  .success[hidden], form[hidden] { display: none; }
+  .tick {
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
+    margin-bottom: 18px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .secondary {
+    margin-top: 12px;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--line);
+  }
+  .secondary:hover { background: var(--bg); }
+  .actions { margin-top: 24px; }
+
+  @media (max-width: 480px) {
+    .card { padding: 28px 20px 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation-duration: 1.5s !important; }
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <form id="f" novalidate>
+      <h1>Feedback</h1>
+      <p class="lead">Send me your message and I'll reach out to you as soon as possible.</p>
+
+      <div class="field">
+        <label for="name">Full name</label>
+        <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Doe" required>
+        <p class="error-text" id="name-err"></p>
+      </div>
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="jane@example.com" required>
+        <p class="error-text" id="email-err"></p>
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+        <p class="error-text" id="message-err"></p>
+      </div>
+
+      <div class="trap" aria-hidden="true">
+        <label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <button type="submit" id="submit">
+        <span class="spinner" aria-hidden="true"></span>
+        <span id="btn-text">Send message</span>
+      </button>
+      <div class="banner" id="banner" role="alert" hidden></div>
+    </form>
+
+    <section class="success" id="success" hidden aria-live="polite">
+      <div class="tick" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </div>
+      <h1>Message sent</h1>
+      <p class="lead" style="margin-bottom:0">Thanks, we've received your message and will get back to you soon. A PDF copy of your submission was downloaded.</p>
+      <div class="actions">
+        <button type="button" id="download">Download PDF again</button>
+        <button type="button" class="secondary" id="again">Send another message</button>
+      </div>
+    </section>
+  </main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbyCltpZ61YZN4VsbFOUdTRh5La7HTNCSV1KYxHENqdLvZsa5M6_SC5Lq_lxai8F7UqA/exec";
+
+  const form = document.getElementById("f");
+  const success = document.getElementById("success");
+  const banner = document.getElementById("banner");
+  const submitBtn = document.getElementById("submit");
+  const btnText = document.getElementById("btn-text");
+
+  let lastSubmission = null;
+
+  function setError(input, errId, msg) {
+    document.getElementById(errId).textContent = msg;
+    input.setAttribute("aria-invalid", msg ? "true" : "false");
+  }
+
+  function validate() {
+    const name = form.name;
+    const email = form.email;
+    const message = form.message;
+    let ok = true;
+    if (!name.value.trim()) { setError(name, "name-err", "Enter your name."); ok = false; }
+    else setError(name, "name-err", "");
+    if (!email.value.trim()) { setError(email, "email-err", "Enter your email address."); ok = false; }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { setError(email, "email-err", "Enter a valid email address, like jane@example.com."); ok = false; }
+    else setError(email, "email-err", "");
+    if (!message.value.trim()) { setError(message, "message-err", "Enter your message."); ok = false; }
+    else setError(message, "message-err", "");
+    return ok;
+  }
+
+  function generatePDF(data) {
+    if (!window.jspdf) return false;
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: "mm", format: "a4" });
+    const pageW = doc.internal.pageSize.getWidth();
+    const pageH = doc.internal.pageSize.getHeight();
+    const margin = 20;
+    const maxW = pageW - margin * 2;
+    let y = 24;
+
+    function ensureSpace(h) {
+      if (y + h > pageH - margin) { doc.addPage(); y = margin; }
+    }
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(20);
+    doc.setTextColor(23, 32, 51);
+    doc.text("Feedback submission", margin, y);
+    y += 7;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.setTextColor(91, 101, 119);
+    doc.text("Submitted on " + data.submittedAt, margin, y);
+    y += 5;
+
+    doc.setDrawColor(213, 219, 229);
+    doc.line(margin, y, pageW - margin, y);
+    y += 10;
+
+    function addField(label, value) {
+      ensureSpace(14);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(10);
+      doc.setTextColor(91, 101, 119);
+      doc.text(label.toUpperCase(), margin, y);
+      y += 6;
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(12);
+      doc.setTextColor(23, 32, 51);
+      const lines = doc.splitTextToSize(value, maxW);
+      const lineH = 6;
+      lines.forEach(function (line) {
+        ensureSpace(lineH);
+        doc.text(line, margin, y);
+        y += lineH;
+      });
+      y += 6;
+    }
+
+    addField("Full name", data.name);
+    addField("Email address", data.email);
+    addField("Message", data.message);
+
+    const safe = (data.name || "submission").replace(/[^a-z0-9]+/gi, "-").replace(/^-+|-+$/g, "").toLowerCase() || "submission";
+    doc.save("contact-" + safe + ".pdf");
+    return true;
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    banner.hidden = true;
+    if (!validate()) {
+      form.querySelector('[aria-invalid="true"]').focus();
+      return;
+    }
+    if (form.website.value) { form.hidden = true; success.hidden = false; return; }
+
+    submitBtn.disabled = true;
+    btnText.textContent = "Sending";
+    try {
+      const values = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim()
+      };
+      const data = new URLSearchParams(values);
+      await fetch(ENDPOINT, { method: "POST", body: data, mode: "no-cors" });
+
+      lastSubmission = Object.assign({}, values, { submittedAt: new Date().toLocaleString() });
+      try { generatePDF(lastSubmission); } catch (pdfErr) { console.error("PDF error:", pdfErr); }
+
+      form.hidden = true;
+      success.hidden = false;
+      form.reset();
+    } catch (err) {
+      banner.textContent = "We couldn't send your message. Check your internet connection and try again.";
+      banner.hidden = false;
+    } finally {
+      submitBtn.disabled = false;
+      btnText.textContent = "Send message";
+    }
+  });
+
+  form.name.addEventListener("input", () => form.name.getAttribute("aria-invalid") === "true" && validate());
+  form.email.addEventListener("input", () => form.email.getAttribute("aria-invalid") === "true" && validate());
+  form.message.addEventListener("input", () => form.message.getAttribute("aria-invalid") === "true" && validate());
+
+  document.getElementById("download").addEventListener("click", () => {
+    if (lastSubmission) generatePDF(lastSubmission);
+  });
+
+  document.getElementById("again").addEventListener("click", () => {
+    success.hidden = true;
+    form.hidden = false;
+    form.name.focus();
+  });
+</script>
+</body>
+</html>
