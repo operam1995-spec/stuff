@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Matches</title>
+  <script src="highcharts.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; overflow: hidden; }
+    body { font-family: Helvetica, Arial, sans-serif; display: flex; flex-direction: column; padding: 6px 8px; }
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid #ccc; flex: 0 0 auto; }
+    .tab { background: none; border: none; padding: 8px 18px; cursor: pointer; font-size: 15px;
+           color: #555; border-bottom: 3px solid transparent; }
+    .tab:hover { color: #000; }
+    .tab.active { color: #0072BD; border-bottom-color: #0072BD; font-weight: bold; }
+    .panel { display: none; margin-top: 6px; min-height: 0; gap: 4px;
+             grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .panel.active { display: grid; flex: 1 1 auto; }
+    .cell { min-height: 0; min-width: 0; }
+  </style>
+</head>
+<body>
+  <div class="tabs" id="tabs"></div>
+  <div id="panels" style="display:contents"></div>
+
+  <script>
+    var D = {cols:{A:[0.49,0.495,0.495,0.484,0.498,0.48,0.496,0.497,0.485,0.496,0.48,0.488,0.497,0.484,0.484,0.497,0.488,0.493,0.49,0.488,0.483,0.492,0.495,0.484,0.491,0.494,0.483,0.484,0.486,0.487,0.495,0.496,0.481,0.487,0.5,0.483,0.487,0.488,0.489,0.489,0.483,0.495,0.495,0.499,0.493,0.487,0.499,0.5,0.499,0.483,0.486,0.489,0.496,0.492,0.492,0.483,0.486,0.486,0.497,0.499,0.489,0.485,0.489,0.497,0.488,0.488,0.486,0.49,0.495,0.497,0.486,0.493,0.499,0.49,0.494,0.489,0.493,0.489,0.486,0.48,0.483,0.481,0.48,0.487,0.498,0.491,0.491,0.487,0.488,0.496,0.488,0.497,0.496,0.485,0.498,0.484,0.481,0.489,0.488,0.492],B:[0.838,0.833,0.842,0.892,0.853,0.888,0.836,0.891,0.82,0.864,0.849,0.81,0.877,0.818,0.831,0.898,0.843,0.807,0.86,0.896,0.858,0.895,0.809,0.862,0.815,0.812,0.886,0.813,0.896,0.867,0.86,0.822,0.828,0.827,0.892,0.824,0.894,0.81,0.883,0.859,0.814,0.819,0.891,0.877,0.864,0.81,0.845,0.849,0.856,0.855,0.804,0.829,0.898,0.879,0.857,0.885,0.863,0.888,0.888,0.852,0.804,0.842,0.859,0.821,0.834,0.822,0.846,0.892,0.817,0.852,0.871,0.845,0.815,0.874,0.84,0.862,0.844,0.88,0.826,0.818,0.83,0.851,0.834,0.878,0.842,0.837,0.835,0.865,0.87,0.853,0.889,0.877,0.856,0.843,0.864,0.864,0.837,0.849,0.832,0.817],C:[0.567,0.575,0.748,0.664,0.831,0.697,0.609,0.801,0.595,0.808,0.739,0.765,0.784,0.699,0.581,0.557,0.674,0.551,0.714,0.711,0.856,0.605,0.54,0.602,0.66,0.76,0.616,0.6,0.652,0.761,0.695,0.75,0.759,0.783,0.693,0.719,0.825,0.87,0.622,0.604,0.788,0.719,0.544,0.822,0.578,0.803,0.741,0.732,0.604,0.631,0.843,0.588,0.532,0.68,0.708,0.848,0.849,0.565,0.551,0.53,0.665,0.567,0.631,0.82,0.834,0.542,0.789,0.556,0.771,0.551,0.556,0.669,0.83,0.596,0.743,0.521,0.729,0.757,0.769,0.729,0.748,0.737,0.874,0.746,0.75,0.815,0.608,0.794,0.855,0.543,0.586,0.732,0.644,0.579,0.675,0.53,0.586,0.672,0.755,0.727],D:[0.203,0.196,0.178,0.199,0.232,0.238,0.213,0.244,0.227,0.228,0.212,0.19,0.206,0.226,0.195,0.232,0.237,0.195,0.246,0.182,0.239,0.183,0.229,0.246,0.243,0.233,0.246,0.18,0.209,0.242,0.23,0.177,0.199,0.186,0.176,0.213,0.187,0.225,0.229,0.176,0.243,0.235,0.226,0.202,0.187,0.225,0.243,0.219,0.249,0.178,0.202,0.181,0.193,0.213,0.242,0.236,0.193,0.223,0.194,0.224,0.182,0.173,0.213,0.22,0.238,0.207,0.21,0.188,0.209,0.226,0.202,0.205,0.171,0.185,0.214,0.197,0.193,0.211,0.177,0.204,0.224,0.181,0.189,0.193,0.173,0.206,0.191,0.218,0.243,0.175,0.178,0.199,0.223,0.185,0.202,0.207,0.222,0.217,0.199,0.215],E:[0.67,0.684,0.675,0.685,0.664,0.698,0.667,0.678,0.663,0.672,0.688,0.667,0.668,0.67,0.7,0.665,0.679,0.697,0.687,0.695,0.661,0.7,0.667,0.665,0.665,0.671,0.671,0.684,0.663,0.683,0.678,0.695,0.676,0.675,0.699,0.692,0.671,0.695,0.671,0.687,0.668,0.668,0.674,0.684,0.694,0.688,0.675,0.684,0.674,0.697,0.686,0.694,0.673,0.685,0.689,0.664,0.68,0.684,0.677,0.69,0.665,0.668,0.668,0.684,0.667,0.663,0.699,0.69,0.699,0.697,0.681,0.661,0.665,0.677,0.661,0.688,0.693,0.674,0.685,0.69,0.668,0.678,0.676,0.662,0.698,0.668,0.682,0.692,0.689,0.667,0.664,0.694,0.674,0.687,0.679,0.69,0.678,0.695,0.684,0.699],con:[0.462,0.409,0.405,0.409,0.42,0.422,0.446,0.418,0.433,0.449,0.46,0.459,0.414,0.455,0.456,0.431,0.463,0.419,0.462,0.47,0.42,0.44,0.451,0.405,0.434,0.424,0.439,0.425,0.433,0.429,0.431,0.461,0.467,0.401,0.468,0.423,0.466,0.458,0.435,0.462,0.43,0.413,0.452,0.404,0.428,0.455,0.45,0.422,0.415,0.47,0.432,0.449,0.402,0.431,0.464,0.413,0.428,0.425,0.45,0.405,0.455,0.424,0.462,0.463,0.425,0.438,0.422,0.441,0.408,0.469,0.442,0.404,0.45,0.434,0.456,0.427,0.401,0.438,0.428,0.41,0.404,0.4,0.42,0.412,0.44,0.407,0.411,0.402,0.467,0.434,0.47,0.464,0.46,0.448,0.451,0.455,0.438,0.4,0.408,0.432],bl:[1881.602,1782.518,1806.854,1798.669,1897.424,1805.473,1828.72,1756.932,1783.438,1753.724,1703.366,1708.824,1778.889,1844.06,1845.113,1702.817,1753.728,1836.998,1850.6,1873.136,1801.756,1750.662,1710.87,1856.374,1814.082,1874.502,1829.883,1719.582,1896.427,1891.78,1785.951,1758.584,1867.67,1846.209,1854.84,1852.361,1799.106,1762.057,1856.156,1785.18,1788.361,1757.55,1711.458,1870.498,1878.899,1777.129,1711.084,1818.565,1891.697,1751.243,1743.375,1890.11,1750.445,1803.478,1890.431,1809.247,1823.025,1879,1830.334,1811.756,1900,1737.076,1866.331,1762.354,1703.415,1788.955,1888.579,1760.844,1833.567,1717.999,1730.36,1798.068,1751.974,1787.938,1728.86,1766.059,1817.129,1862.101,1742.467,1840.77,1809.918,1743.971,1853.226,1760.557,1899.912,1796.248,1715.93,1778.218,1812.936,1768.633,1860.373,1814.309,1837.934,1716.297,1745.73,1890.24,1865.145,1820.623,1765.414,1867.919]},tabs:[{name:'con \u2248 0.42',rows:['con'],matches:[4,20,82,17],targets:{con:0.42}},{name:'con \u2248 0.42 & bl \u2248 1800',rows:['con','bl'],matches:[20,5,47,55],targets:{con:0.42,bl:1800}}]};
+    var FEATS = ['A', 'B', 'C', 'D', 'E'];
+    var TCOLOR = { con: '#D62728', bl: '#1F4FD8' };
+
+    function axisStyle(title, withLine) {
+      var a = {
+        title: { text: title }, gridLineWidth: 1, gridLineColor: '#d9d9d9',
+        lineColor: '#262626', tickColor: '#262626', tickWidth: 1, tickLength: 6, tickPosition: 'inside',
+        minorTickInterval: 'auto', minorGridLineWidth: 1, minorGridLineColor: '#ececec',
+        minorGridLineDashStyle: 'Dot', minorTickWidth: 1, minorTickLength: 3,
+        minorTickPosition: 'inside', minorTickColor: '#262626',
+        labels: { style: { color: '#262626' } }
+      };
+      if (withLine) a.lineWidth = 1;
+      return a;
+    }
+
+    function enableLegendDrag(chart) {
+      var lg = chart.legend.group;
+      if (!lg) return;
+      var el = lg.element, start = null;
+      el.style.cursor = 'move';
+      el.addEventListener('pointerdown', function (e) {
+        start = { px: e.clientX, py: e.clientY, tx: lg.translateX, ty: lg.translateY };
+        el.setPointerCapture(e.pointerId); e.preventDefault();
+      });
+      el.addEventListener('pointermove', function (e) {
+        if (!start) return;
+        lg.translate(start.tx + e.clientX - start.px, start.ty + e.clientY - start.py);
+      });
+      var stop = function () { start = null; };
+      el.addEventListener('pointerup', stop);
+      el.addEventListener('pointercancel', stop);
+    }
+
+    function makeChart(id, feat, xkey, tab, showLegend) {
+      var xs = D.cols[xkey], ys = D.cols[feat];
+      var all = xs.map(function (x, i) { return [x, ys[i]]; });
+      var match = tab.matches.map(function (i) { return [xs[i], ys[i]]; });
+      var lo = Math.min.apply(null, ys), hi = Math.max.apply(null, ys);
+      var pad = (hi - lo) * 0.06;
+      lo -= pad; hi += pad;
+      var t = tab.targets[xkey];
+      var chart = Highcharts.chart(id, {
+        chart: { type: 'scatter', backgroundColor: '#ffffff', plotBackgroundColor: '#ffffff',
+                 plotBorderWidth: 1, plotBorderColor: '#262626',
+                 style: { fontFamily: 'Helvetica, Arial, sans-serif' } },
+        title: { text: feat + ' vs ' + xkey, style: { fontSize: '14px', fontWeight: 'bold' } },
+        credits: { enabled: false },
+        xAxis: axisStyle(null, false),
+        yAxis: Object.assign(axisStyle(null, true), { min: lo, max: hi, startOnTick: false, endOnTick: false }),
+        legend: { enabled: false, layout: 'vertical', align: 'right', verticalAlign: 'top',
+                  floating: true, x: -10, y: 30, backgroundColor: '#ffffff',
+                  borderColor: '#262626', borderWidth: 1,
+                  itemStyle: { fontWeight: 'normal', color: '#262626', fontSize: '11px' } },
+        tooltip: { headerFormat: '', pointFormat: xkey + ': {point.x:.3f}<br>' + feat + ': {point.y:.3f}' },
+        series: [
+          { name: 'All Data', type: 'scatter', data: all, color: 'rgba(128,128,128,0.5)',
+            marker: { symbol: 'circle', radius: 3.5 }, zIndex: 1 },
+          { name: 'Target (' + xkey + '=' + t + ')', type: 'line', data: [[t, lo], [t, hi]],
+            color: TCOLOR[xkey], dashStyle: 'Dash', lineWidth: 1.5, marker: { enabled: false },
+            enableMouseTracking: false, zIndex: 2, states: { hover: { lineWidth: 1.5 } } },
+          { name: 'Matches', type: 'scatter', data: match, color: '#D62728',
+            marker: { symbol: 'circle', radius: 6, lineWidth: 1, lineColor: '#000000', fillColor: '#D62728' },
+            zIndex: 5 }
+        ]
+      });
+      if (showLegend) enableLegendDrag(chart);
+      return chart;
+    }
+
+    if (typeof Highcharts === 'undefined') {
+      document.body.insertAdjacentHTML('afterbegin',
+        '<p style="color:red;font-size:18px">Highcharts library failed to load. ' +
+        'Download https://code.highcharts.com/highcharts.js, save it as highcharts.js ' +
+        'next to plot.html, then re-run the program.</p>');
+    } else {
+      var tabsEl = document.getElementById('tabs');
+      var panelsEl = document.getElementById('panels');
+      var built = {};
+
+      D.tabs.forEach(function (tab, ti) {
+        var btn = document.createElement('button');
+        btn.className = 'tab'; btn.textContent = tab.name; btn.setAttribute('data-i', ti);
+        tabsEl.appendChild(btn);
+        var panel = document.createElement('div');
+        panel.className = 'panel'; panel.id = 'panel' + ti;
+        panel.style.gridTemplateRows = 'repeat(' + tab.rows.length + ', minmax(0, 1fr))';
+        tab.rows.forEach(function (xkey, ri) {
+          FEATS.forEach(function (f, ci) {
+            var cell = document.createElement('div');
+            cell.className = 'cell'; cell.id = 'c' + ti + '_' + ri + '_' + ci;
+            panel.appendChild(cell);
+          });
+        });
+        panelsEl.appendChild(panel);
+        btn.addEventListener('click', function () { showTab(ti); });
+      });
+
+      function showTab(ti) {
+        document.querySelectorAll('.tab').forEach(function (t) {
+          t.classList.toggle('active', +t.getAttribute('data-i') === ti);
+        });
+        document.querySelectorAll('.panel').forEach(function (p) {
+          p.classList.toggle('active', p.id === 'panel' + ti);
+        });
+        var tab = D.tabs[ti];
+        if (!built[ti]) {
+          built[ti] = [];
+          tab.rows.forEach(function (xkey, ri) {
+            FEATS.forEach(function (f, ci) {
+              // legend only in the top-right chart (like the Python version)
+              var leg = (ri === 0 && ci === FEATS.length - 1);
+              built[ti].push(makeChart('c' + ti + '_' + ri + '_' + ci, f, xkey, tab, leg));
+            });
+          });
+        } else {
+          built[ti].forEach(function (c) { c.reflow(); });
+        }
+      }
+      window.addEventListener('resize', function () {
+        Object.keys(built).forEach(function (k) { built[k].forEach(function (c) { c.reflow(); }); });
+      });
+      showTab(0);
+    }
+  </script>
+</body>
+</html>
